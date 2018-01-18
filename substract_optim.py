@@ -9,10 +9,10 @@ def fast_substract(a, b):
     return fast_add((x1, y1), (x2, -y2))
 
 # use with an even number
-nbits = 16
+nbits = 32
 
 # generate private and public key
-k = random.randint(0, (2**nbits)-1)
+k = random.randint(0, 2**nbits - 2**(nbits/2))
 Q = fast_multiply(G, k)
 print("SEARCH - {0}".format(k))
 
@@ -25,6 +25,11 @@ for candidate, factor2 in candidates_dict.iteritems() :
     substract_res = fast_substract(candidate2, Q)
     if substract_res in candidates_dict:
         factor = candidates_dict[substract_res]
-        priv = factor + (factor2 * 2**(nbits/2))
+        if factor == 0:
+            priv = factor + (factor2 * 2**(nbits/2))
+        else:
+            _factor = (2**(nbits/2)) - factor
+            _factor2 = factor2 - 1
+            priv = _factor + (_factor2 * 2**(nbits/2))
         print("FOUND  - {0}".format(priv))
         break
