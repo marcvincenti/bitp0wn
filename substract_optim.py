@@ -25,11 +25,6 @@ for candidate, factor2 in candidates_dict.iteritems() :
     substract_res = fast_substract(candidate2, Q)
     if substract_res in candidates_dict:
         factor = candidates_dict[substract_res]
-        if factor == 0:
-            priv = factor + (factor2 * 2**(nbits/2))
-        else:
-            _factor = (2**(nbits/2)) - factor
-            _factor2 = factor2 - 1
-            priv = _factor + (_factor2 * 2**(nbits/2))
+        priv = (factor2 * 2**(nbits/2)) - factor
         print("FOUND  - {0}".format(priv))
         break
