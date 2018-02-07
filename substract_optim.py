@@ -22,9 +22,9 @@ candidates_dict = dict((fast_multiply(G, x), x) for x in range(2**(nbits/2)))
 # find y where y E X and y = G + (x * 2^(nbits/2))
 for candidate, factor2 in candidates_dict.iteritems() :
     candidate2 = fast_multiply(candidate, 2**(nbits/2))
-    substract_res = fast_substract(candidate2, Q)
+    substract_res = fast_substract(Q, candidate2)
     if substract_res in candidates_dict:
         factor = candidates_dict[substract_res]
-        priv = (factor2 * 2**(nbits/2)) - factor
+        priv = (factor2 * 2**(nbits/2)) + factor
         print("FOUND  - {0}".format(priv))
         break
