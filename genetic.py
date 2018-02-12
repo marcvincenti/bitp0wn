@@ -25,7 +25,8 @@ def init_random_population():
 
 def fitness(d, r_base):
     d_x = fast_multiply(G, d)[0]
-    return abs(d_x - r_base)
+    diff = abs(d_x - r_base)
+    return min(diff, N - diff)
 
 def mutate(d):
     b = int2bytes(d, BYTES)
