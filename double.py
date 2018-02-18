@@ -41,8 +41,10 @@ assert Q2 == fast_multiply(G, d*2)
 # Double and triple Qx, works only for secp256k1 curve
 Q2x = ((x**4 - 56 * x) * inv(4 * x**3 + 28, P)) % P
 Q3x = ((x**9 - 672 * x**6 + 2352 * x**3 + 21952) * inv(9 * x**2 * (x**3 + 28)**2, P)) % P
+Q4x = (x * (x**3 - 56) * (x**12 - 3752 * x**9 - 65856 * x**6 - 702464 * x**3 - 1229312) * inv(16 * (x**3+7) * (x**6 + 140 * x**3 - 392)**2, P)) % P
 assert Q2x == fast_multiply(G, d*2)[0]
 assert Q3x == fast_multiply(G, d*3)[0]
+assert Q4x == fast_multiply(G, d*4)[0]
 
 # Build Quartic equation with the relation of Qx and 2Qx
 assert (x ** 4 - 4 * Q2[0] * x ** 3 - 56 * x - 28 * Q2[0]) % P ==  0
