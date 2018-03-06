@@ -26,7 +26,7 @@ assert Q2y == fast_multiply(G, d*2)[1]
 
 # Build Quartic equation with the relation of Qx and 2Qx
 assert (x**4 - 4 * Q2[0] * x**3 - 56 * x - 28 * Q2[0]) % P ==  0
-assert (x * (x**3 - 56) * inv(x**3 + 7, P)) % P == (4 * Q2[0]) % P
+assert ((x - 4*Q2[0]) * (x**3 + 7) * inv(63 * x, P)) % P == 1
 
 # Build Quartic equation with the relation of Qy and 2Qy
 assert (y**4 - 8 * Q2[1] * y**3 + 126 * y**2 - 1323) % P ==  0
