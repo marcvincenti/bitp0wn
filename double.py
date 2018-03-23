@@ -39,6 +39,19 @@ Q3x = ((x**9 - 672 * x**6 + 2352 * x**3 + 21952) * inv(9 * x**2 * (x**3 + 28)**2
 assert Q2x == fast_multiply(G, d*2)[0]
 assert Q3x == fast_multiply(G, d*3)[0]
 
+# Double Qx and add G
+Q2xp1 = (((Q2[0] * G[0]) * (Q2[0] + G[0]) - 2*Q2[1]*G[1] + 14) * inv((Q2[0] - G[0])**2, P)) % P
+assert Q2xp1 == fast_multiply(G, (d*2)+1)[0]
+
+# Eq 1.
+assert (9*x**4) % P == ((x**3 + 7) * (8*x + 4*Q2x)) % P
+# Eq 2.
+assert (63 * x) % P == ((x**3 + 7) * (x - 4*Q2x)) % P
+# (Eq 1.) / (Eq 2.)
+assert (9 * x**3) % P == (63 * (8*x + 4*Q2x) * inv(x - 4*Q2x, P)) % P
+# (Eq 1.) x (Eq 2.)
+assert (567 * x**5) % P == ((x**3 + 7) * (x**3 + 7) * (8*x + 4*Q2x) * (x - 4*Q2x)) % P
+
 # Double Qy, works only for secp256k1 curve
 Q2y = ((y**4 + 126 * y**2 - 1323) * inv(8 * y**3, P)) % P
 assert Q2y == fast_multiply(G, d*2)[1]
@@ -109,7 +122,9 @@ t_cube = 10584 * (Q2[1]**2 - 7)
 assert t_cube % P == (inv(7,P)*(42*Q2[0])**3) % P
 assert t_cube % P == (49*(6*Q2[0])**3) % P
 
+"""
 t = -6 * cuberoot(49, P) * Q2[0]
 assert (t**3 + _p*t + _q) % P == 0
 m = t - 8*Q2[1]**2 + 42
 assert (8*(m**3) + 8*p*(m**2) + (2*(p**2) - 8*r)*m - q**2) % P
+"""
