@@ -44,13 +44,13 @@ Q2xp1 = (((Q2[0] * G[0]) * (Q2[0] + G[0]) - 2*Q2[1]*G[1] + 14) * inv((Q2[0] - G[
 assert Q2xp1 == fast_multiply(G, (d*2)+1)[0]
 
 # Eq 1.
-assert (9*x**4) % P == ((x**3 + 7) * (8*x + 4*Q2x)) % P
+assert x**4 % P == ((x**3 + 7) * (8*x + 4*Q2x) * inv(9, P)) % P
 # Eq 2.
-assert (63 * x) % P == ((x**3 + 7) * (x - 4*Q2x)) % P
+assert x == ((x**3 + 7) * (x - 4*Q2x) * inv(63, P)) % P
 # (Eq 1.) / (Eq 2.)
-assert (9 * x**3) % P == (63 * (8*x + 4*Q2x) * inv(x - 4*Q2x, P)) % P
+assert x**3 % P == (7 * (8*x + 4*Q2x) * inv(x - 4*Q2x, P)) % P
 # (Eq 1.) x (Eq 2.)
-assert (567 * x**5) % P == ((x**3 + 7) * (x**3 + 7) * (8*x + 4*Q2x) * (x - 4*Q2x)) % P
+assert x**5 % P == ((x**3 + 7) * (x**3 + 7) * (8*x + 4*Q2x) * (x - 4*Q2x) * inv(567, P)) % P
 
 # Double Qy, works only for secp256k1 curve
 Q2y = ((y**4 + 126 * y**2 - 1323) * inv(8 * y**3, P)) % P
