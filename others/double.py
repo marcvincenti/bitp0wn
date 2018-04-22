@@ -230,9 +230,41 @@ assert (G**4 + 12*Q2[0] * G**3 + 48*Q2[0]**2 * G**2 + (64*Q2[0]**3-56) * G - 252
 assert (I**4 + 56 * I**3 + 3136*Q2[0]**3 * I - 21952*Q2[0]**3) % P == 0
 
 # With z1 = x, we have the resultant cubic equation for potentials other roots
-assert (x - Z1) * (4*x**3 - 12*Q2[0]*x**2 - 56) % P == 0
+assert 4 * (x**3 - 3*Q2[0]*x**2 - 14) % P == (x**3 + G*x**2 + H*x + I) % P
 
-# (x**3 - 3*Q2[0]*x**2 - 14) = 0
+d0 = (9 * Q2[0]**2) % P
+d1 = (-54 * Q2[0]**3 - 378) % P
+d_1 = ((d1**2 - 4*d0**3) * inv(-27, P)) % P
+d_2 = (-4*27*Q2[0]**3*14 - 27*14**2) % P
+assert d_1 == d_2 # d_1 or d_2 is the discriminant
+
+assert (d1**2 - 4*d0**3) % P == (40824 * Q2[0]**3 + 142884) % P
+
+C1 = cuberoot((d1 + modular_sqrt(40824 * Q2[0]**3 + 142884, P)) * inv(2, P), P)
+C2 = cuberoot((d1 - modular_sqrt(40824 * Q2[0]**3 + 142884, P)) * inv(2, P), P)
+
+res1 = (-inv(3, P) * (-3*Q2[0] + C1 + d0*inv(C1, P))) % P
+res2 = (-inv(3, P) * (-3*Q2[0] + C2 + d0*inv(C2, P))) % P
+
+assert (res1**3 - 3*Q2[0]*res1**2 - 14) % P == 0
+assert (res2**3 - 3*Q2[0]*res2**2 - 14) % P == 0
+
+assert ((x - res1) * (x - res2)) % P == ((x**2 - (res1+res2)*x + res1*res2)) % P
+
+# Now we look for res3
+# (x**3 - (res1+res2+res3)*x**2 + (res1*res2 + res1*res3 + res2*res3)*x - res1*res2*res3)
+# res1 + res2 + res3 = 3 * Q2[0]
+# (res1*res2 + res1*res3 + res2*res3) = 0
+# (res1 * res2 * res3) = 14
+print((3 * Q2[0] - (res1 + res2)) % P)
+print((-(res1 * res2) * inv(res1 + res2, P)) % P)
+print(14 * inv(res1 * res2, P) % P)
+# all the precendent prints have to be the same but aren't always
+res3 = 14 * inv(res1 * res2, P) % P
+assert (res3**3 - 3*Q2[0]*res3**2 - 14) % P == 0
+
+assert 4 * (x**3 - (res1+res2+res3)*x**2 + (res1*res2 + res1*res3 + res2*res3)*x - res1*res2*res3) % P == (x**3 + G*x**2 + H*x + I) % P
+
 # x = t - (b/3a) => t = x + (b/3a)
 _a = 1
 _b = (3*Q2[0]) % P
