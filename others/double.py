@@ -225,6 +225,13 @@ I = (Z1 * H - 56) % P
 assert (Z1 * I) % P == (28 * Q2[0]) % P
 assert (x - Z1) * (x**3 + G*x**2 + H*x + I) % P == 0
 
+_x = random.SystemRandom().randrange(1, N)
+assert (_x - Z1) * (_x**3 + G*_x**2 + H*_x + I) % P == (_x**4 - 4*Q2[0]*_x**3 - 56*_x - 28*Q2[0]) % P
+assert (_x - Z1) * (Z1**3 + Z1**2*(_x-4*Q2[0]) + Z1*(_x**2-4*Q2[0]*_x) + (_x**3-4*Q2[0]*_x**2-56)) % P == (_x**4 - 4*Q2[0]*_x**3 - 56*_x - 28*Q2[0]) % P
+
+assert (Z1**3 - 56) % P == (252*Q2[0]) * inv(Z1 - 4*Q2[0], P) % P
+assert (Z1**3) * (Z1 - 4*Q2[0]) % P == (28*Q2[0] + 56*Z1) % P
+
 # We now deduce the new following quartics
 assert (G**4 + 12*Q2[0] * G**3 + 48*Q2[0]**2 * G**2 + (64*Q2[0]**3-56) * G - 252*Q2[0]) % P == 0
 assert (I**4 + 56 * I**3 + 3136*Q2[0]**3 * I - 21952*Q2[0]**3) % P == 0
