@@ -22,3 +22,7 @@ The scripts are not optimised and are only proof-of-concepts.
 ### networks
 
 + __[networks/shared-secret.py](https://github.com/mvrcrypto/bitp0wn/blob/master/networks/shared-secret.py)__ : Here you will find an algorithm to anonymously contact a node by constructing a route and a global shared secret key that only the initial sender and final receiver will share. The receiver won't know who is the sender and will send a signature to ensure the global key isn't compromised.
+
+### signatures
+
++ __[signatures/one-to-one.py](https://github.com/mvrcrypto/bitp0wn/blob/master/signatures/one-to-one.py)__ : A proof-of-concept to build a signature for a particular public key. Only the owner of this public key will be able to assert that the signature is correct.
