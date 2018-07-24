@@ -43,11 +43,12 @@ def ecdsa_raw_verify_one_to_one(msghash, vrs, sender_pub, receiver_priv):
     v, r, s = vrs
     w = bitcoin.inv(s, N)
     z = bitcoin.hash_to_int(msghash)
-    u1, u2D = z*w % N, r*w*bitcoin.decode_privkey(receiver_priv) % N
-    receiver_pub = bitcoin.privtopub(receiver_priv)
-    u1Qr = bitcoin.fast_multiply(bitcoin.decode_pubkey(receiver_pub), u1)
-    u2DQs = bitcoin.fast_multiply(bitcoin.decode_pubkey(sender_pub), u2D)
-    x, y = bitcoin.fast_add(u1Qr, u2DQs)
+    u1, u2 = z*w % N, r*w % N
+    receiver_pub = bitcoin.decode_pubkey(bitcoin.privtopub(receiver_priv))
+    receiver_sender_shared = bitcoin.fast_multiply(bitcoin.decode_pubkey(sender_pub), bitcoin.decode_privkey(receiver_priv))
+    u1Qr = bitcoin.fast_multiply(receiver_pub, u1)
+    u2Qs = bitcoin.fast_multiply(receiver_sender_shared, u2)
+    x, y = bitcoin.fast_add(u1Qr, u2Qs)
     return bool(r == x and (r % N) and (s % N))
 
 # Alice verify the signature provided by Bob works with her own private key
