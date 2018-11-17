@@ -17,6 +17,9 @@ The scripts are not optimised and are only proof-of-concepts.
 
 ### miscellaneous
 
++ __[miscellaneous/fake_sig.py](https://github.com/mvrcrypto/bitp0wn/blob/master/miscellaneous/fake_sig.py)__ : In this script, we show why hashing the message in ecdsa is important. Because without it, you can generate plenty of signatures that can be verified with Satoshi signature.
+
+
 + __[miscellaneous/playground.py](https://github.com/mvrcrypto/bitp0wn/blob/master/miscellaneous/playground.py)__ : This file contains relations between values of differents signatures for an identical address.
 
 + __[miscellaneous/double.py](https://github.com/mvrcrypto/bitp0wn/blob/master/miscellaneous/double.py)__ : This file is more about finding an arithmetic relationship between 2 public keys on the curve. Most of formulaes are specific to _secp256k1_.
