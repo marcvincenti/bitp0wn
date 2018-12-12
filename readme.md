@@ -19,6 +19,7 @@ The scripts are not optimised and are only proof-of-concepts.
 
 + __[miscellaneous/fake_sig.py](https://github.com/mvrcrypto/bitp0wn/blob/master/miscellaneous/fake_sig.py)__ : In this script, we show why hashing the message in ecdsa is important. Because without it, you can generate plenty of signatures that can be verified with Satoshi signature.
 
++ __[miscellaneous/forgery.py](https://github.com/mvrcrypto/bitp0wn/blob/master/miscellaneous/forgery.py)__ : In this file, we try to establish the relation between a generated signature (see __fake_sig.py__) and a new one with the same r value.
 
 + __[miscellaneous/playground.py](https://github.com/mvrcrypto/bitp0wn/blob/master/miscellaneous/playground.py)__ : This file contains relations between values of differents signatures for an identical address.
 
@@ -26,7 +27,7 @@ The scripts are not optimised and are only proof-of-concepts.
 
 ### networks
 
-+ __[networks/shared-secret.py](https://github.com/mvrcrypto/bitp0wn/blob/master/networks/shared-secret.py)__ : Here you will find an algorithm to anonymously contact a node by constructing a route and a global shared secret key that only the initial sender and final receiver will share. The receiver won't know who is the sender and will send a signature to ensure the global key isn't compromised.
++ __[networks/shared-secret.py](https://github.com/mvrcrypto/bitp0wn/blob/master/networks/shared-secret.py)__ : Here you will find an algorithm to anonymously contact a node by constructing a route and a global shared secret key that only the initial sender and final receiver will share. The receiver won't know who is the sender and will send a signature to ensure the global key isn't compromised. Also, the encryption key is computed with a global shared key between all participants, but only the 2 communicating nodes have the key.
 
 ### signatures
 
