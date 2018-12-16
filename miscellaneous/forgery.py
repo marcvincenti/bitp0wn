@@ -23,7 +23,7 @@ h = a * r * inv(b, N)
 z = hash_to_int(sha256('0xDEADBEEF').hexdigest())
 
 # re-calculate s to sign z
-s_p = r * s * inv(r - (z - h) * inv(d + (z * inv(r, N)), N), N)
+s_p = s * (z + d*r) * inv(h + d*r, N)
 
 # et voila
 w = inv(s_p, N)
