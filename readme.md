@@ -9,11 +9,11 @@ The scripts are not optimised and are only proof-of-concepts.
 
 + __[hacks/brute_force.py](https://github.com/mvrcrypto/bitp0wn/blob/master/hacks/brute_force.py)__ : You will find a simple bruteforce algorithm wich test every possibilities to retrieve a private key from the public key.
 
++ __[hacks/bsgs.py](https://github.com/mvrcrypto/bitp0wn/blob/master/hacks/bsgs.py)__ : The Baby-step Giant-step algorithm, it has order of 2^(n/2) time complexity and space complexity.
+
 + __[hacks/r_exploit_ecdsa.py](https://github.com/mvrcrypto/bitp0wn/blob/master/hacks/r_exploit_ecdsa.py)__ : This algorithm exploit a failure in signatures generation. If the same address use the same k in 2 differents signatures (_i.e_ same r-value), then you can recalculate the private key instantly.
 
 + __[hacks/r_exploit_schnorr.py](https://github.com/mvrcrypto/bitp0wn/blob/master/hacks/r_exploit_schnorr.py)__ : Same as precedent exploit but for schnorr signatures instead of ecdsa signatures.
-
-+ __[hacks/substract_optim.py](https://github.com/mvrcrypto/bitp0wn/blob/master/hacks/substract_optim.py)__ : My best algorithm wich work in O(sqrt(2^n)) with n the number of bits of the private key. The idea is to generate once for all every public keys with with the private key being inferior to n/2. Then, we multiply them by (n/2) and we substract the public key. We found the private key when we found a key which already exist in the pre-generated base.
 
 ### miscellaneous
 
