@@ -25,6 +25,8 @@ The scripts are not optimised and are only proof-of-concepts.
 
 + __[miscellaneous/double.py](https://github.com/mvrcrypto/bitp0wn/blob/master/miscellaneous/double.py)__ : This file is more about finding an arithmetic relationship between 2 public keys on the curve. Most of formulaes are specific to _secp256k1_.
 
++ __[miscellaneous/tiny-curve.py](https://github.com/mvrcrypto/bitp0wn/blob/master/miscellaneous/tiny-curve.py)__ : This script let you generate your own elliptic curves (not secure, never use the curves in production). This will be usefull to test some of our algorithm on smaller curves.
+
 ### networks
 
 + __[networks/shared-secret.py](https://github.com/mvrcrypto/bitp0wn/blob/master/networks/shared-secret.py)__ : Here you will find an algorithm to anonymously contact a node by constructing a route and a global shared secret key that only the initial sender and final receiver will share. The receiver won't know who is the sender and will send a signature to ensure the global key isn't compromised. Also, the encryption key is computed with a global shared key between all participants, but only the 2 communicating nodes have the key.
