@@ -186,7 +186,7 @@ Generate a curve defined over a Weierstrass function
 """
 
 # Generate P
-P = generate_prime(64)
+P = generate_prime(32)
 print("P = {0}".format(P))
 # Generate A & B
 while True:
@@ -213,7 +213,7 @@ while True:
     min_m, max_m = P + 1 - 2 * sqrt_p, P + 1 + 2 * sqrt_p
     steps = isqrt(max_m - min_m)
     m_candidates = []
-    O = G
+    O = (0, 0)
     baby_steps = {}
     for x in range(steps):
         baby_steps[O] = x
@@ -224,7 +224,7 @@ while True:
         substract_res = fast_substract((0,0), O, P)
         if substract_res in baby_steps:
             factor_baby = baby_steps[substract_res]
-            m_candidates.append((factor_giant * steps) + factor_baby + min_m - 1)
+            m_candidates.append((factor_giant * steps) + factor_baby + min_m)
         O = fast_add(O, O_ADDER, P)
     if len(m_candidates) == 1:
         print("G = {0}".format(G))

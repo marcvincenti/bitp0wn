@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from bitcoin import G, fast_add, fast_multiply
+from bitcoin import fast_add, fast_multiply, G
 import random
 
 def fast_substract(a, b):
@@ -12,19 +12,25 @@ def fast_substract(a, b):
 nbits = 32
 
 # generate private and public key
-k = random.randint(0, 2**nbits - 2**(nbits/2))
+k = random.randint(0, 2**nbits)
 Q = fast_multiply(G, k)
 print("SEARCH - {0}".format(k))
 
 # for x E N and x < 2^(nbits/2) , f(x) => G * x
-candidates_dict = dict((fast_multiply(G, x), x) for x in range(2**(nbits/2)))
+O = (0, 0)
+baby_steps = {}
+for x in range(2**(nbits/2)):
+    baby_steps[O] = x
+    O = fast_add(O, G)
 
 # find y where y E X and y = G + (x * 2^(nbits/2))
-for candidate, factor2 in candidates_dict.iteritems() :
-    candidate2 = fast_multiply(candidate, 2**(nbits/2))
-    substract_res = fast_substract(Q, candidate2)
-    if substract_res in candidates_dict:
-        factor = candidates_dict[substract_res]
-        priv = (factor2 * 2**(nbits/2)) + factor
-        print("FOUND  - {0}".format(priv))
+O = (0, 0)
+O_ADDER = fast_multiply(G, 2**(nbits/2))
+for factor_giant in range(2**(nbits/2)):
+    substract_res = fast_substract(Q, O)
+    if substract_res in baby_steps:
+        factor_baby = baby_steps[substract_res]
+        k = (factor_giant * 2**(nbits/2)) + factor_baby
+        print("FOUND  - {0}".format(k, factor_giant, factor_baby))
         break
+    O = fast_add(O, O_ADDER)

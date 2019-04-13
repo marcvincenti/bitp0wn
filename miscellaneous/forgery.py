@@ -22,8 +22,8 @@ h = a * r * inv(b, N)
 # calculate the hash of the message we want to sign
 z = hash_to_int(sha256('0xDEADBEEF').hexdigest())
 
-# re-calculate s to sign z
-s_p = s * (z + d*r) * inv(h + d*r, N)
+# re-calculate s to sign z with same r
+s_p = (s * (z + d*r) * inv(h + d*r, N)) % N
 
 # et voila
 w = inv(s_p, N)
