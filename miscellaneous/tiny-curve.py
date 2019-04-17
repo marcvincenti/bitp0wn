@@ -194,7 +194,8 @@ while True:
     B = random.randint(0, P)
     if (4*A*A*A + 27*B*B) % P != 0:
         break;
-print("A = {0}, B = {1}".format(A, B))
+print("A = {0}".format(A))
+print("B = {0}".format(B))
 while True:
     # Generate G, a random point on the curve
     while True:

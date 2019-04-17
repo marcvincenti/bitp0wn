@@ -31,6 +31,6 @@ for factor_giant in range(2**(nbits/2)):
     if substract_res in baby_steps:
         factor_baby = baby_steps[substract_res]
         k = (factor_giant * 2**(nbits/2)) + factor_baby
-        print("FOUND  - {0}".format(k, factor_giant, factor_baby))
+        print("FOUND  - {0}".format(k))
         break
     O = fast_add(O, O_ADDER)
