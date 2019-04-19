@@ -21,6 +21,8 @@ The scripts are not optimised and are only proof-of-concepts (not suited for pro
 
 + __[miscellaneous/secret-sign.py](https://github.com/mvrcrypto/bitp0wn/blob/master/miscellaneous/secret-sign.py)__ : A proof-of-concept to build a signature for a particular public key. Only the owner of this public key will be able to assert that the signature is correct.
 
++ __[miscellaneous/shamir-shared-secret.py](https://github.com/mvrcrypto/bitp0wn/blob/master/miscellaneous/shamir-shared-secret.py)__ : Shamir Shared Secret Scheme to distribute a secret to n entities wich can be recovered with k < n shares.
+
 + __[miscellaneous/tiny-curve.py](https://github.com/mvrcrypto/bitp0wn/blob/master/miscellaneous/tiny-curve.py)__ : This script let you generate your own elliptic curves (not secure, never use the curves in production). This will be useful to test some of our algorithms on smaller curves.
 
 ### signatures
