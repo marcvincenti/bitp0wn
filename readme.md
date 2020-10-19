@@ -13,6 +13,8 @@ The scripts are not optimised and are only proof-of-concepts (not suited for pro
 
 + __[keys/pollard_rho.py](https://github.com/mvrcrypto/bitp0wn/blob/master/keys/pollard_rho.py)__ : The Pollard Rho algorithm, it has order of 2^(n/2) time complexity but is slower than bsgs in practice. However, this algorithm has a constant space complexity.
 
++ __[keys/pollard_kangaroo.py](https://github.com/mvrcrypto/bitp0wn/blob/master/keys/pollard_kangaroo.py)__ : The Pollard Kangaroo algorithm, it has order of 2^(log(b-a)/2) time complexity and is faster than bsgs or pollard rho. this algorithm has a constant space complexity.
+
 ### miscellaneous
 
 + __[miscellaneous/double.py](https://github.com/mvrcrypto/bitp0wn/blob/master/miscellaneous/double.py)__ : This file is more about finding an arithmetic relationship between 2 public keys on the curve. Most of formulaes are specific to _secp256k1_.
